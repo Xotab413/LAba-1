@@ -1,4 +1,5 @@
-﻿#include <stdio.h>
+//15-я задача Матусевич Семён
+#include <stdio.h>
 #include<math.h>
 #include<stdlib.h>
 //Инициализация
