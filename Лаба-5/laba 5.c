@@ -64,7 +64,7 @@ void count() {
 
 	}
 	if (max == INT_MIN){
-		printf_s("This matrix dint iclude this type of figure)");
+		printf_s("This matrix dont iclude this type of figure)");
 		exit(0);
 }
 	printf("\nmaximum element = %d \nhis index is [%d][%d] ", max, cor, por);
