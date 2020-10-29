@@ -1,20 +1,21 @@
-//Лаба 3 задние 5))
+//laba 5 number 2 
+//Дана действительная квадратная матрица порядка n. Найти наибольшее из значений элементов, расположенных в заштрихованной части матрицы
 #include<stdio.h>
-#include<math.h>
 #include<stdlib.h>
-void check();//функция проверки
-void num_count();//функция подсчёта
-int n, k = 0, flag = 0;
+#include<time.h>
+void count();
+void check();
+int i, j, mas[100][100], max = INT_MIN, por=0,cor=0,N;
 int main() {
-	printf_s("Enter a nubmer <= 99: ");
+	printf_s("Enter N..\n");
 	check();
-	num_count();
-	return(0);
+	count();
 }
 void check() {
+	int flag = 0;
 	do {//блок проверки 
-		flag = scanf_s("%d", &n);
-		if (n > 99) {
+		flag = scanf_s("%d", &N);
+		if (N > 100) {
 			system("CLS");
 			printf("Please enter a number lower tnan 100\n");
 			rewind(stdin);
@@ -24,22 +25,47 @@ void check() {
 			printf("Error,please enter a number\n");
 			rewind(stdin);//чистим чистим
 		}
-		
-		if (flag!=0 && n < 0 ) {
+
+		if (flag != 0 && N < 0) {
 			system("CLS");
 			printf("Please enter a positive number :) \n");
 			rewind(stdin);
 		}
-	} while (n > 99 || flag == 0 || n < 0);
+	} while (N > 99 || flag == 0 || N < 0);
 }
-void num_count() {
-	printf_s("k20,k10,k5,k1\n");
-	for (int k20 = 0; k20 <= (n / 20); k20++)//идем от большего к меньшему 
-		for (int k10 = 0; k10 <= (n - k20 * 20) / 10; k10++)
-			for (int k5 = 0; k5 <= (n - k20 * 20 - k10 * 10) / 5; k5++)
-			{
-				int k1 = (n - k20 * 20 - k10 * 10 - k5 * 5);
-				printf_s("%d %d %d %d\n", k20, k10, k5, k1); k++;
+void count() {
+	srand(time(NULL));
+	for (i = 0; i < N; i++)
+		for (j = 0; j < N; j++)
+			mas[i][j] = rand() % 100;
+	printf_s("Your current matrix");
+	for (i = 0; i < N; i++) {
+		printf_s("\n");
+		for (j = 0; j < N; j++) {
+			printf_s("%d ", mas[i][j]);
+		}
+	}
+	printf_s("\nSecond Matrix:");
+	if (N < 3)
+		printf_s("NOPE))");
+	for (i = 0; i < N / 2; i++) {
+		printf_s("\n");
+		for (j = 1 + i; j < N - i - 1; j++) {
+			printf_s("%d ", mas[i][j]);
+		}
+	}
+	for (i = 0; i < N / 2; i++) {
+		for (j = 1 + i; j < N - i - 1; j++)
+			if (mas[i][j] > max) {
+				max = mas[i][j];
+				cor = i;
+				por = j;
 			}
-	printf_s("Value of ways: %d", k);//выводим кол-во случаев
+
+	}
+	if (max == INT_MIN){
+		printf_s("This matrix dint iclude this type of figure)");
+		exit(0);
+}
+	printf("\nmaximum element = %d \nhis index is [%d][%d] ", max, cor, por);
 }
