@@ -20,7 +20,7 @@ int main() {
     free(mas);
     return (0);
 }
-int** create_user(int a) {
+int** create_user(int a) {//ф-ция создание  матрицы(вручную)
     mas = calloc(n, sizeof(int*));
     for (i = 0; i < n; i++) {
         mas[i] = (int*)calloc(n, sizeof(int));
@@ -29,7 +29,7 @@ int** create_user(int a) {
     }
     return (mas);
 }
-int** create_random() {
+int** create_random() {//ф-ция создание рандомной матрицы
     int** mak = NULL;
     mak = calloc(n, sizeof(int*));
     srand(time(NULL));
@@ -41,10 +41,10 @@ int** create_random() {
     }
     return (mak);
 }
-int check(int a, int b) {
+int check(int a, int b) {//ф-ция проверки
     int flag=0;
     if (b == 1) {
-        do {//���� ��������
+        do {
             flag = scanf_s("%d", &a);
             if (a > 4) {
                 system("CLS");
@@ -54,7 +54,7 @@ int check(int a, int b) {
             if (!flag) {
                 system("CLS");
                 printf("Error,please enter a number\n");
-                rewind(stdin);//������ ������
+                rewind(stdin);//чистим
             }
 
             if (flag != 0 && a < 0) {
@@ -67,12 +67,12 @@ int check(int a, int b) {
     }
     else if(b==0) {
         puts("PLease enter a number of rows&columns");
-        do {//���� ��������
+        do {//áëîê ïðîâåðêè
             flag = scanf_s("%d", &n);
             if (!flag) {
                 system("ClS");
                 printf("Error,please enter a number\n");
-                rewind(stdin);//������ ������
+                rewind(stdin);
             }
 
             if (n < 0 && flag != 0) {
@@ -100,7 +100,7 @@ int check(int a, int b) {
         while (flag == 0) {
             system("CLS");
             printf("Error, do not write letters\n");
-            rewind(stdin);//������ ������
+            rewind(stdin);//÷èñòèì ÷èñòèì
             flag = scanf_s("%d", &mas[i][j]);
         }
         while (mas[i][j] >INT_MAX|| mas[i][j] < 0) {
@@ -122,7 +122,7 @@ int check(int a, int b) {
 
 }
 void print()
-{
+{//ф-ция вывода матрицы
     for (i = 0; i < n; i++) {
         printf_s("\n ");
         for (j = 0; j < n; j++)
@@ -130,7 +130,7 @@ void print()
     }
     puts("\n");
 }
-void gen(int**mak) {
+void gen(int**mak) {//ф-ция генерации симметричной матрицы
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++)
             mak[j][i] = mak[i][j];
@@ -163,7 +163,7 @@ void* count() {
     }
     return NULL;
 }
-void* compare() {
+void* compare() {//проверка на симметричность
     for (int k = 1; k < cor + 1; k++) {
         if (arr1[k] == arr2[k]) {
             col++;
