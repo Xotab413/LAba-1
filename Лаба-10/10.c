@@ -1,5 +1,5 @@
 #include <stdio.h>
-int recurs_nod(int a, int b){
+int recurs_nod(int a, int b){//Алгоритм Евклида(можно через остаток))
     if(a==b)
         return (a);
     if(a>b)
